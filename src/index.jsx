@@ -6,7 +6,7 @@ import { Lyrics } from './Lyrics';
 import { lines } from './lyrics-lines';
 
 const App = () => {
-  const [currentLineIndex, setCurrentLineIndex] = useState(0);
+  const [currentLineIndex, setCurrentLineIndex] = useState(10);
   return (
     <div className="container">
       <h1>Fools Garden: Lemon Tree</h1>

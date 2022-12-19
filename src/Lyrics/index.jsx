@@ -3,17 +3,28 @@ import './style.css';
 
 export const Lyrics = ({ lines, currentLineIndex }) => {
   const lineRef = useRef();
-  useEffect(() => {}, [currentLineIndex]);
+
+  useEffect(() => {
+    if (lineRef.current) {
+      lineRef.current.scrollIntoView({
+        block: 'start',
+        inline: 'nearest',
+        behavior: 'smooth',
+      });
+    }
+  }, [currentLineIndex]);
   return (
     <div className="lyrics">
-      {lines.map((item, index) => (
-        <p
-          key={index}
-          className={currentLineIndex === index ? 'current-line' : ''}
-        >
-          {item.text}
-        </p>
-      ))}
+      {lines.map((line, index) => {
+        if (currentLineIndex === index) {
+          return (
+            <p key={index} className="current-line" ref={lineRef}>
+              {line.text}
+            </p>
+          );
+        }
+        return <p key={index}>{line.text}</p>;
+      })}
     </div>
   );
 };
